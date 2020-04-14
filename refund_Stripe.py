@@ -46,7 +46,7 @@ csv_file = (open(refund_csv_file_name,'w'))
 
 # Process each refund, one by one, may take a long time.
 for refund in refunds:
-  
+  refund['amount'] *= 100
   # Generate details for refund that's about to occur
   email = "Processing refund for: " + refund['email'] + '\n'
   amount = "For the amount of: $" + str(refund['amount'] / 100) + ' GBP\n'
@@ -57,7 +57,7 @@ for refund in refunds:
   super_print(log_file, output_string)
 
   person = refund['email']
-  refunded_amount = refund['amount']
+  refunded_amount = refund['amount'] / 100
   id = refund['id']
 
   # Construct write line for the charge
